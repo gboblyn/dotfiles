@@ -6,3 +6,4 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (setq inhibit-startup-message t)
+(setq evil-shift-width 2)
