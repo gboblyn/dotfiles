@@ -2,7 +2,7 @@
 tmux start-server\; has-session -t android_deck 2>/dev/null
 
 if [ "$?" -eq 1 ]; then
-  cd /home/glynch/code/android/deck_around_android
+  cd /Users/glynch/code/android/deck_around
 
   # Run pre command.
   
@@ -12,21 +12,21 @@ if [ "$?" -eq 1 ]; then
 
 
   # Create other windows.
-  tmux new-window -c /home/glynch/code/android/deck_around_android -t android_deck:1 -n xml_editor
-  tmux new-window -c /home/glynch/code/android/deck_around_android -t android_deck:2 -n consoles
-  tmux new-window -c /home/glynch/code/android/deck_around_android -t android_deck:3 -n logs
-  tmux new-window -c /home/glynch/code/android/deck_around_android -t android_deck:4 -n scratch
+  tmux new-window -c /Users/glynch/code/android/deck_around -t android_deck:1 -n xml_editor
+  tmux new-window -c /Users/glynch/code/android/deck_around -t android_deck:2 -n consoles
+  tmux new-window -c /Users/glynch/code/android/deck_around -t android_deck:3 -n logs
+  tmux new-window -c /Users/glynch/code/android/deck_around -t android_deck:4 -n scratch
 
 
   # Window "java_editor"
   
-  tmux send-keys -t android_deck:0.0 '' C-m
-  tmux send-keys -t android_deck:0.0 enw\ ./src/ C-m
+  # tmux send-keys -t android_deck:0.0 '' C-m
+  tmux send-keys -t android_deck:0.0 emacsclient\ -t\ ./src/ C-m
 
   tmux splitw -t android_deck:0
   tmux select-layout -t android_deck:0 main-vertical
   
-  tmux send-keys -t android_deck:0.1 '' C-m
+  # tmux send-keys -t android_deck:0.1 '' C-m
   tmux send-keys -t android_deck:0.1 ant\ debug\ install C-m
 
   tmux select-layout -t android_deck:0 main-vertical
@@ -35,14 +35,14 @@ if [ "$?" -eq 1 ]; then
 
   # Window "xml_editor"
   
-  tmux send-keys -t android_deck:1.0 '' C-m
-  tmux send-keys -t android_deck:1.0 enw\ ./res/layout/ C-m
+#  tmux send-keys -t android_deck:1.0 '' C-m
+  tmux send-keys -t android_deck:1.0 emacsclient\ -t \ ./res/layout/ C-m
 
   tmux splitw -t android_deck:1
   tmux select-layout -t android_deck:1 even-horizontal
   
-  tmux send-keys -t android_deck:1.1 '' C-m
-  tmux send-keys -t android_deck:1.1 vim\ ./res/values/strings.xml C-m
+  # tmux send-keys -t android_deck:1.1 '' C-m
+  tmux send-keys -t android_deck:1.1 emacsclient\ -t\ ./res/values/strings.xml C-m
 
   tmux select-layout -t android_deck:1 even-horizontal
 
@@ -50,14 +50,13 @@ if [ "$?" -eq 1 ]; then
 
   # Window "consoles"
   
-  tmux send-keys -t android_deck:2.0 '' C-m
+  #tmux send-keys -t android_deck:2.0 '' C-m
   tmux send-keys -t android_deck:2.0 git\ pull C-m
 
   tmux splitw -t android_deck:2
   tmux select-layout -t android_deck:2 even-vertical
   
-  tmux send-keys -t android_deck:2.1 '' C-m
-  
+  # tmux send-keys -t android_deck:2.1 '' C-m
 
   tmux select-layout -t android_deck:2 even-vertical
 
@@ -69,7 +68,7 @@ if [ "$?" -eq 1 ]; then
 
   # Window "scratch"
   
-  tmux send-keys -t android_deck:4 enw C-m
+  tmux send-keys -t android_deck:4 emacsclient\ -t C-m
 
   tmux select-window -t 0
 fi
