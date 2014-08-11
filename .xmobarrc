@@ -1,0 +1,19 @@
+Config {
+	font = "xft:Bitstream Vera Sans Mono:size=8:antialias=true"
+	, bgColor = "black"
+	, fgColor = "grey"
+	, position = Top
+	, lowerOnStart = True
+	, commands = [
+		  Run Cpu ["-L", "3", "-H", "50", "--normal", "green", "--high", "red"] 10
+		, Run Battery ["-t", "<left>% / <timeleft>", "-L", "50", "-H", "75", "-h", "green", "-l", "red"] 10
+		, Run Memory ["-t", "<usedratio>%"] 10
+		-- , Run Swap ["-t", "<usedration>%"] 10
+		, Run Com "uname" ["-s", "-r"] "" 36000
+		, Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+		, Run Uptime [] 10
+	]
+	, sepChar = "%"
+	, alignSep = "}{"
+	, template = "%cpu% | Mem: %memory% | %uptime% | Batt: %battery% }{ <fc=#ee9a00>%date%</fc> | %uname%"
+}

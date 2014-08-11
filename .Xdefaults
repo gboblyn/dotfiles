@@ -1,0 +1,15 @@
+URxvt*loginShell:true
+URxvt*transparent:true
+URxvt*shading:5
+URxvt*background:Black
+URxvt*foreground:White
+URxvt*scrollBar:true
+URxvt*scrollBar_right:true
+URxvt*scrollBar_floating:true
+URxvt*scrollstyle:plain
+URxvt*secondaryScroll:true
+
+URxvt*saveLines:32767
+URxvt*troughCoor:#000000
+URxvt*scrollColor:#222222
+URxvt*font: xft:Bitstream Vera Sans Mono:pixelsize=10
