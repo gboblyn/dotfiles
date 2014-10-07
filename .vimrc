@@ -25,6 +25,8 @@ set ruler    " Show the line and column number of the cursor.
 set number   " Show line numbers.
 set gdefault " Use /g in :s commands by default.
 syntax on    " Turn on syntax highlighting.
+set wildmenu " Show wildcard suggestions.
+set autoread " Automatically sense changes to file.
 
 set backspace=indent,eol,start " Allow backspace to delete everything.
 
@@ -39,11 +41,18 @@ set hlsearch   " Highlight search results.
 set splitbelow
 set splitright
 
-set backup                  " May want to use writebackup instead.
-set backupdir=~/.vim/backup " Specify directory for backup files.
+" Use backups.
+set backup
+set writebackup
+set backupdir=~/.vim/backup
+
 set directory=~/.vim/tmp    " Specify directory for swap files.
 set undofile                " Save undo history to an undofile.
 set tags=./tags;            " Add tag file from existing directory to tags.
+
+" Make j and k act like you would expect.
+nnoremap j gj
+nnoremap k gk
 
 " Change the leader key to something useful.
 let mapleader = " "
