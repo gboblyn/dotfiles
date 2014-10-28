@@ -6,39 +6,32 @@ if [ "$?" -eq 1 ]; then
   TMUX= tmux new-session -d -s nodejs -n editors
 
   # Create other windows.
-  tmux new-window -c ./ -t nodejs:1 -n consoles
-  tmux new-window -c ./ -t nodejs:2 -n repl
+  tmux new-window -c ./ -t nodejs:1 -n db
+  tmux new-window -c ./ -t nodejs:2 -n server
   tmux new-window -c ./ -t nodejs:3 -n git
-  tmux new-window -c ./ -t nodejs:4 -n scratch
 
   # Window "editors"
-  # vim should be all that's needed (possibly default to open the directory)
-  tmux send-keys -t nodejs:0 vim\ ./ C-m
+	# Open vim session.
+  tmux send-keys -t nodejs:0 vim\ -S\ session.ses C-m
 
-  # Window "consoles"
-  # Run the mongo console and nodejs server
+  # Window "db"
+  # Run the mongo console
   tmux send-keys -t nodejs:1.0 sudo\ mongod C-m
 
   tmux splitw -t nodejs:1
 
   tmux send-keys -t nodejs:1.1 mongo C-m
 
-  tmux splitw -t nodejs:1
-  
-  tmux send-keys -t nodejs:1.2 node\ index.js C-m
+	# Window "server"
+	# Run the nodejs server and repl
+  tmux send-keys -t nodejs:2.0 node\ index.js C-m
 
-  tmux select-layout -t nodejs:1 main-vertical
+  tmux splitw -t nodejs:2
 
-  tmux select-pane -t nodejs:1.0
-
-  # Window "repl"
-  tmux send-keys -t nodejs:2 node C-m
+  tmux send-keys -t nodejs:2.1 node C-m
 
   # Window "git"
   tmux send-keys -t nodejs:3 git\ pull C-m
-
-  # Window "scratch"
-  tmux send-keys -t nodejs:4 vim\ TODO.md C-m
 
   tmux select-window -t 0
 fi
