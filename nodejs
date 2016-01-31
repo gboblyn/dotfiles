@@ -6,29 +6,29 @@ if [ "$?" -eq 1 ]; then
   TMUX= tmux new-session -d -s nodejs -n editors
 
   # Create other windows.
-  tmux new-window -c ./ -t nodejs:1 -n db
-  tmux new-window -c ./ -t nodejs:2 -n server
+  tmux new-window -c ./ -t nodejs:1 -n server
+  tmux new-window -c ./ -t nodejs:2 -n db
   tmux new-window -c ./ -t nodejs:3 -n git
 
   # Window "editors"
 	# Open vim session.
   tmux send-keys -t nodejs:0 vim\ -S\ session.ses C-m
 
-  # Window "db"
-  # Run the mongo console
-  tmux send-keys -t nodejs:1.0 sudo\ mongod C-m
+	# Window "server"
+	# Run the nodejs server and repl
+  tmux send-keys -t nodejs:1.0 npm\ start C-m
 
   tmux splitw -t nodejs:1
 
-  tmux send-keys -t nodejs:1.1 mongo C-m
+  tmux send-keys -t nodejs:1.1 node C-m
 
-	# Window "server"
-	# Run the nodejs server and repl
-  tmux send-keys -t nodejs:2.0 node\ index.js C-m
+  # Window "db"
+  # Run the mongo console
+  tmux send-keys -t nodejs:2.0 sudo\ mongod C-m
 
   tmux splitw -t nodejs:2
 
-  tmux send-keys -t nodejs:2.1 node C-m
+  tmux send-keys -t nodejs:2.1 mongo C-m
 
   # Window "git"
   tmux send-keys -t nodejs:3 git\ pull C-m
